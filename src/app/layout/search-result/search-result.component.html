@@ -1,0 +1,31 @@
+<div class="container mt-4">
+    @if (userResult && userResult.length>0) {
+    <table class="table col-10">
+        <thead>
+            <tr>
+                <th>Identity</th>
+                <th>Last name</th>
+                <th>First name</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (user of userResult; track $index) {
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.nom }}</td>
+                <td>{{ user.prenom }}</td>
+                <td>{{ user.email }}</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+
+@if (userResult && userResult.length === 0) {
+<div>
+    No users found.
+  </div>
+}
+
+</div>
