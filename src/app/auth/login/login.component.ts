@@ -18,6 +18,7 @@ export class LoginComponent {
 
   email: string = '';
   password: string = '';
+  loginErrorMessage: string = '';
 
   connexion() {
 
@@ -28,6 +29,8 @@ export class LoginComponent {
       console.log("Loged in: " + this.email);
       
       this.router.navigate(['/home']);
+    } else {
+      this.loginErrorMessage = 'Email or password is incorrect.';
     }
   }
 }

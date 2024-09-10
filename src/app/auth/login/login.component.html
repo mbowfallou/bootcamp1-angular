@@ -52,6 +52,12 @@
                 <div class="inputBox">
                     <input type="button" (click)="connexion()" value="Login">
                 </div>
+
+                <!-- Message d'erreur -->
+                 @if (loginErrorMessage) {
+                <div class="alert alert-danger mt-2" style="text-align: center;">
+                  {{ loginErrorMessage }}
+                </div>}
             </div>
         </div>
     </div>

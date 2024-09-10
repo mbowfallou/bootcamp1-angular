@@ -1,6 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HomeComponent } from './home.component';
+import { SearchComponent } from '../search/search.component';
+import { SearchResultComponent } from '../search-result/search-result.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { ActivatedRoute } from '@angular/router';
+import { of } from 'rxjs';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -8,7 +13,20 @@ describe('HomeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HomeComponent]
+      //declarations: [HomeComponent], 
+      imports: [
+        HomeComponent,
+        SearchComponent,
+        SearchResultComponent
+      ],
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            params: of({}) // Simuler les paramètres de la route
+          }
+        }
+      ]
     })
     .compileComponents();
     
