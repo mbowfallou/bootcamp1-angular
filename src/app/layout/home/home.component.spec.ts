@@ -3,8 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HomeComponent } from './home.component';
 import { SearchComponent } from '../search/search.component';
 import { SearchResultComponent } from '../search-result/search-result.component';
-import { RouterTestingModule } from '@angular/router/testing';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { of } from 'rxjs';
 
 describe('HomeComponent', () => {
@@ -16,16 +15,24 @@ describe('HomeComponent', () => {
       //declarations: [HomeComponent], 
       imports: [
         HomeComponent,
-        SearchComponent,
-        SearchResultComponent
-      ],
-      providers: [
-        {
-          provide: ActivatedRoute,
-          useValue: {
-            params: of({}) // Simuler les paramètres de la route
-          }
-        }
+        /*NullInjectorError: R3InjectorError(DynamicTestModule)[ActivatedRoute -> ActivatedRoute]: 
+          NullInjectorError: No provider for ActivatedRoute!
+
+          To resolv it, we can put:
+          1):
+            RouterModule.forRoot([]) into the imports values or
+          2)
+            use the providers like this:
+              providers: [
+                {
+                  provide: ActivatedRoute,
+                  useValue: {
+                    params: of({}) // Simuler les paramètres de la route
+                  }
+                }
+              ]
+        */
+        RouterModule.forRoot([]) 
       ]
     })
     .compileComponents();

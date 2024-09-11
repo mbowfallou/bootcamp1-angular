@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Personne } from './models/personne';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -10,11 +11,28 @@ import { Personne } from './models/personne';
   styleUrl: './app.component.css'
 })
 export class AppComponent implements OnInit{
-  personne:Personne = {};
-  ngOnInit(): void {
-    this.poo();
-  }
+
   title = 'Bootcamp 1 Angular';
+
+  personne:Personne = {};
+
+  countries$ = of(['Senegal', 'Mali', 'Niger'])
+
+  ngOnInit(): void {
+    //this.poo();
+    this.countries$.subscribe({
+      next(value) { 
+        console.log('Les valeurs: ' + value); 
+      },
+      error(err) { 
+        console.error('An error occured: ' + err); 
+      },
+      complete() { 
+        console.log('Opoeration completed successfully !'); 
+      } 
+    });
+  }
+
 
 
   poo(){
@@ -25,7 +43,7 @@ export class AppComponent implements OnInit{
     this.personne.qualification = "Developppeur";
     //this.personne.age = 29;
     
-    //console.log(this.personne);
+    console.log(this.personne);
     
   }
 }
